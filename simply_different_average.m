@@ -15,19 +15,20 @@ score = @(candidate)(sign(candidate) * nnz(xor(simple_op(A, B, candidate), B)) /
 
 ubound = t;
 highest = score(t);
-while highest < t
+while highest < t && ubound < 5
     ubound = ubound + 1;
     highest = score(ubound);
 end
 
 lbound = 0;
 lowest = score(lbound);
-while lowest > t
+while lowest > t && lbound > -5
     lbound = lbound - 1;
     lowest = score(lbound);
 end
 
-candidate = divide_and_conquer(score, lbound, ubound, t, 0.01, 0.01);
-C = (candidate .* A_weighted_distance + (1 - candidate) .* B_weighted_distance) >= 0;
+candidate = divide_and_conquer(score, lbound, ubound, t, 0.0001, 0.000001);
+fprintf('cand : %d , score : %d \n',candidate,score(candidate));
+C = simple_op(A, B, candidate);
 end
 
