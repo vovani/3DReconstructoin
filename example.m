@@ -1,6 +1,6 @@
 function example(A, B, operation)   
     sld = uicontrol('Style', 'slider',...
-    'Min',-120,'Max',120,'Value',0,...
+    'Min',-50,'Max',150,'Value',0,...
     'Position', [20 20 300 20],...
     'Callback', @callback);
 
@@ -11,7 +11,6 @@ function example(A, B, operation)
         'String', sliderValue);
      
     imshow(B);
-
 
     function callback(source, ~)
         t = source.Value / 100.0;
